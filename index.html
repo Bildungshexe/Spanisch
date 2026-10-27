@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Español! Übungen</title>
+<style>
+  :root {
+    --bg: #fff7ef;
+    --card: #ffffff;
+    --ink: #2b2238;
+    --muted: #6f6480;
+    --line: #f1e3d3;
+    --purple: #7c3aed;
+    --shadow: 0 6px 0 rgba(43, 34, 56, .07), 0 10px 30px rgba(43, 34, 56, .06);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 10% 0%, #ffe8d1 0, transparent 35%),
+      radial-gradient(circle at 95% 15%, #f3e8ff 0, transparent 30%);
+    color: var(--ink);
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.5;
+    touch-action: manipulation;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 16px 16px 48px; }
+  :focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; border-radius: 12px; }
+
+  .hero {
+    border-radius: 30px;
+    padding: 30px 26px 34px;
+    color: #fff;
+    background: linear-gradient(120deg, #f59e0b 0%, #f43f5e 45%, #7c3aed 100%);
+    box-shadow: 0 14px 40px rgba(244, 63, 94, .25);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "¡Hola!";
+    position: absolute; right: -10px; bottom: -42px;
+    font-size: 150px; font-weight: 900; opacity: .13; pointer-events: none;
+  }
+  .hero .tag { display: inline-block; background: rgba(255,255,255,.22); padding: 5px 14px; border-radius: 999px; font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+  .hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 12px 0 6px; font-weight: 900; line-height: 1.1; }
+  .hero p { margin: 0; max-width: 620px; font-size: 18px; }
+
+  h2 { font-size: 22px; font-weight: 800; margin: 34px 0 14px; }
+
+  .tile {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    padding: 22px;
+  }
+  .app { display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center; }
+  .app .icon {
+    width: 86px; height: 86px; border-radius: 26px; color: #fff; font-size: 22px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #f59e0b, #f43f5e 50%, #7c3aed);
+  }
+  .app h3 { margin: 0 0 4px; font-size: 22px; }
+  .app p { margin: 0; color: var(--muted); }
+  .app .btns { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 60px; padding: 14px 24px; border-radius: 18px;
+    font: inherit; font-size: 18px; font-weight: 800; text-decoration: none; cursor: pointer;
+    transition: transform .1s ease, box-shadow .1s ease;
+  }
+  .btn:active { transform: translateY(3px); box-shadow: none !important; }
+  .btn.main { flex: 1 1 280px; color: #fff; background: linear-gradient(90deg, #f59e0b, #f43f5e, #7c3aed); box-shadow: 0 5px 0 rgba(124, 58, 237, .4); }
+  .btn.alt { flex: 1 1 220px; color: var(--purple); background: #f5f3ff; border: 2px solid #ddd6fe; }
+  .levels { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .levels span { font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 999px; background: #fff7ed; color: #9a3412; }
+
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+  .step { display: flex; flex-direction: column; gap: 6px; }
+  .step .num {
+    width: 48px; height: 48px; border-radius: 16px; color: #fff; font-size: 22px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 4px;
+  }
+  .s1 .num { background: #f59e0b; } .s2 .num { background: #f43f5e; }
+  .s3 .num { background: #7c3aed; } .s4 .num { background: #0d9488; }
+  .step b { font-size: 18px; }
+  .step span { color: var(--muted); font-size: 16px; }
+
+  .note { margin-top: 14px; background: #fffbeb; border-color: #fde68a; display: flex; gap: 14px; align-items: flex-start; }
+  .note .emo { font-size: 30px; line-height: 1; }
+  .note p { margin: 0 0 6px; }
+
+  .qr { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+  .qr img { width: 160px; height: 160px; border-radius: 14px; border: 2px solid var(--line); background: #fff; }
+  .qr p { margin: 0 0 6px; }
+  .qr code { font-size: 18px; font-weight: 800; color: var(--purple); overflow-wrap: anywhere; }
+
+  footer { text-align: center; color: var(--muted); font-size: 14px; margin-top: 40px; }
+  @media (max-width: 520px) {
+    .app { grid-template-columns: 1fr; }
+    .app .icon { width: 70px; height: 70px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="tag">Spanisch · Übungen</span>
+    <h1>¡Bienvenidos! 👋</h1>
+    <p>Hier findest du deine Spanisch-Übungen. Lade die App herunter, übe auf deinem Rechner, auch ohne Internet, und schicke am Ende deine Ergebnisse an deine Lehrkraft.</p>
+  </header>
+
+  <h2>📚 Deine Übungen</h2>
+
+  <article class="tile app">
+    <div class="icon">¡PAS!</div>
+    <div>
+      <h3>Tiempos del Pasado y Consecutio Temporum</h3>
+      <p>Vergangenheitszeiten, indirekte Rede, Subjuntivo und irreale Bedingungssätze in 6 Leveln.</p>
+      <div class="levels">
+        <span>🔍 Indefinido / Imperfecto</span><span>💬 Estilo indirecto</span><span>🎚️ Subjuntivo</span><span>🧩 Condicionales</span><span>👑 Master</span>
+      </div>
+    </div>
+    <div class="btns">
+      <a class="btn main" href="tiempos.html" download="Spanisch-Tiempos.html">⬇️ App herunterladen</a>
+      <a class="btn alt" href="tiempos.html">▶️ Direkt im Browser üben</a>
+    </div>
+  </article>
+
+  <h2>🧭 So geht’s</h2>
+  <section class="steps">
+    <div class="tile step s1"><div class="num">1</div><b>Herunterladen</b><span>Tippe oder klicke auf „App herunterladen“. Die Datei landet meist im Ordner <b>Downloads</b>.</span></div>
+    <div class="tile step s2"><div class="num">2</div><b>Öffnen</b><span>Öffne die Datei per <b>Doppelklick</b>. Sie läuft im Browser, auch ohne Internet.</span></div>
+    <div class="tile step s3"><div class="num">3</div><b>Üben</b><span>Gib deinen <b>Vornamen</b> ein und bearbeite alle 6 Level. Bedienen kannst du sie per Maus, Finger oder Tastatur.</span></div>
+    <div class="tile step s4"><div class="num">4</div><b>Abgeben</b><span>Klicke am Ende auf „Ergebnisse exportieren“ und schicke die Datei per <b>Mail oder mebis</b> an deine Lehrkraft.</span></div>
+  </section>
+
+  <div class="tile note">
+    <span class="emo">💡</span>
+    <div>
+      <p><b>Wichtig:</b> Dein Fortschritt wird nur im Browser auf deinem Gerät gespeichert. Arbeite deshalb immer am selben Gerät, im selben Browser und mit derselben Variante (heruntergeladen <i>oder</i> direkt im Browser).</p>
+      <p>Lösche nicht den Browserverlauf, bevor du deine Ergebnisse abgegeben hast.</p>
+    </div>
+  </div>
+
+  <h2>📱 Zum Weitergeben</h2>
+  <div class="tile qr">
+    <img src="qr-code.png" alt="QR-Code zu dieser Seite" width="160" height="160">
+    <div>
+      <p>Scanne den QR-Code mit dem Tablet oder Handy, oder tippe diese Adresse ein:</p>
+      <code>bildungshexe.github.io/Spanisch</code>
+    </div>
+  </div>
+
+  <footer>¡Mucha suerte! 🍀</footer>
+</div>
+</body>
+</html>
